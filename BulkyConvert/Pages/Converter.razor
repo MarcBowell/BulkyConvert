@@ -1,0 +1,149 @@
+﻿@page "/convert/{conversionType}"
+@inject IUnitConversionService ConversionService
+
+<div class="container convert-area-container">
+    <div class="row input-row">
+        <div class="col-9">
+            <input type="text" readonly="readonly" value="@GetInputValueText() @ItemConverter.InputUnit.Abbreviation" />
+        </div>
+        <div class="col-3">
+            <button @onclick="() => MinusButtonClick()">@GetMinusButtonText()</button>
+        </div>
+    </div>
+    <div class="row output-row">
+        <div class="col-9">
+            <input type="text" readonly="readonly" value="@GetOutputValue() @ItemConverter.OutputUnit.Abbreviation" />
+        </div>
+        <div class="col-3">
+            <button>^</button>
+        </div>
+    </div>
+    <div class="row convert-button-row">
+        <div class="col-3">
+            <button @onclick="e => AddButtonClick(1)">1</button>
+        </div>
+        <div class="col-3">
+            <button @onclick="e => AddButtonClick(2)">2</button>
+        </div>
+        <div class="col-3">
+            <button @onclick="e => AddButtonClick(3)">3</button>
+        </div>
+        <div class="col-3">
+            <button @onclick="e => AddButtonClick(4)">4</button>
+        </div>
+    </div>
+    <div class="row convert-button-row">
+        <div class="col-3">
+            <button @onclick="e => AddButtonClick(5)">5</button>
+        </div>
+        <div class="col-3">
+            <button @onclick="e => AddButtonClick(6)">6</button>
+        </div>
+        <div class="col-3">
+            <button @onclick="e => AddButtonClick(7)">7</button>
+        </div>
+        <div class="col-3">
+            <button @onclick="e => AddButtonClick(8)">8</button>
+        </div>
+    </div>
+    <div class="row convert-button-row">
+        <div class="col-3">
+            <button @onclick="e => AddButtonClick(9)">9</button>
+        </div>
+        <div class="col-3">
+            <button @onclick="e => AddButtonClick(0)">0</button>
+        </div>
+        <div class="col-3">
+            <button @onclick="e => AddDotClick()">.</button>
+        </div>
+        <div class="col-3">
+            <button @onclick="e => DeleteClick()">&lt;</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string ConversionType { get; set; }
+
+    public string InputValue { get; set; }
+
+    public bool IsNegativeNumber { get; set; }
+
+    public CoreUnitConverter ItemConverter { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        ItemConverter = ConversionService.GetUnitConverter(ConversionType);
+    }
+
+    public void AddButtonClick(int number)
+    {
+        if (number > 0 || !string.IsNullOrEmpty(InputValue))
+            InputValue += number.ToString();
+    }
+
+    public void AddDotClick()
+    {
+        if (string.IsNullOrEmpty(InputValue))
+        {
+            InputValue += "0.";
+        }
+        else
+        {
+            if (!InputValue.Contains("."))
+                InputValue += ".";
+        }
+    }
+
+    public void DeleteClick()
+    {
+        if (!string.IsNullOrEmpty(InputValue))
+        {
+            if (InputValue == "0.")
+                InputValue = string.Empty;
+            else
+                InputValue = InputValue.Substring(0, InputValue.Length - 1);
+        }
+    }
+
+    public void MinusButtonClick()
+    {
+        IsNegativeNumber = !IsNegativeNumber;
+    }
+
+    public string GetMinusButtonText()
+    {
+        if (IsNegativeNumber)
+            return "+";
+        else
+            return "-";
+    }
+
+    public string GetInputValueText()
+    {
+        if (string.IsNullOrEmpty(InputValue))
+            return "0";
+        if (InputValue != "0" && IsNegativeNumber)
+            return $"- {InputValue}";
+        else
+            return InputValue;
+    }
+
+    public double GetOutputValue()
+    {
+        if (double.TryParse(InputValue, out double inputNumber))
+        {
+            if (IsNegativeNumber)
+                return ItemConverter.GetConversion(-inputNumber);
+            else
+                return ItemConverter.GetConversion(inputNumber);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+}
+}
