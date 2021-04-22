@@ -1,5 +1,6 @@
 ﻿html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: darkorange;
 }
 
 a, .btn-link {
@@ -47,8 +48,16 @@ a, .btn-link {
         top: 0.5rem;
     }
 
+.nav-bar {
+    height: 8vh;
+}
+
+.content {
+    height: 80vh;
+}
+
 .convert-area-container {
-    height: 95vh;
+    height: 100%;
 }
 
 .convert-area-container .input-row, .convert-area-container .output-row {
@@ -56,8 +65,19 @@ a, .btn-link {
 }
 
 .convert-area-container .input-row input, .convert-area-container .output-row input {
-    height: 90%;
-    width: 100%;    
+    height: 99%;
+    width: 100%;
+    font-size: 5vh;       
+}
+
+.convert-area-container .input-row input {
+    padding-left: 5px;
+    background-color: antiquewhite;
+}
+
+.convert-area-container .output-row input {
+    padding-left: 5px;
+    background-color: gray;
 }
 
 .convert-area-container .convert-button-row {
@@ -68,4 +88,10 @@ a, .btn-link {
     height: 99%;
     width: 99%;
     font-size: 8vh;
+    background-color: yellow;
+}
+
+.convert-area-container .col-3, .convert-area-container, .col-9 {
+    padding-left: 1px!important;
+    padding-right: 1px!important;
 }
