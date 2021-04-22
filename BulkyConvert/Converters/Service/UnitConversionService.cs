@@ -11,7 +11,7 @@ namespace Marcware.BulkyConvert.Converters.Service
         {
             public readonly static MeasurementUnit Yard = new MeasurementUnit("Yard", "Yards", "yd");
             public readonly static MeasurementUnit Mile = new MeasurementUnit("Mile", "Miles", "mile");
-            public readonly static MeasurementUnit Kilometres = new MeasurementUnit("Kilometre", "Kilometers", "km");
+            public readonly static MeasurementUnit Kilometres = new MeasurementUnit("Kilometre", "Kilometres", "km");
         }
 
         private struct TemperatureUnits
@@ -43,8 +43,8 @@ namespace Marcware.BulkyConvert.Converters.Service
                 new FahrenheitToCelciusConverter(TemperatureUnits.Fahrenheit, TemperatureUnits.Celsius, UnitDomains.Temperature, false),
                 new FahrenheitToGasMarkConverter(TemperatureUnits.Fahrenheit, TemperatureUnits.GasMark, UnitDomains.Temperature, true),
                 new CelciusToFahrenheitConverter(TemperatureUnits.Celsius, TemperatureUnits.Fahrenheit, UnitDomains.Temperature, false),
-                new CelsiusToGasMarkConverter(TemperatureUnits.Celsius, TemperatureUnits.GasMark, UnitDomains.Temperature, false),
-                new GasMarkToCelsiusConverter(TemperatureUnits.GasMark, TemperatureUnits.Celsius, UnitDomains.Temperature, true),
+                new CelsiusToGasMarkConverter(TemperatureUnits.Celsius, TemperatureUnits.GasMark, UnitDomains.Temperature, true),
+                new GasMarkToCelsiusConverter(TemperatureUnits.GasMark, TemperatureUnits.Celsius, UnitDomains.Temperature, false),
                 new GasMarkToFahrenheitConverter(TemperatureUnits.GasMark, TemperatureUnits.Fahrenheit, UnitDomains.Temperature, false)                
             };
         }

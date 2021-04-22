@@ -41,12 +41,12 @@ a, .btn-link {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
 
 .nav-bar {
     height: 8vh;
@@ -91,7 +91,54 @@ a, .btn-link {
     background-color: yellow;
 }
 
-.convert-area-container .col-3, .convert-area-container, .col-9 {
-    padding-left: 1px!important;
-    padding-right: 1px!important;
+.conversion-list-domain-row {
+    background-color: orange;
+}
+
+.conversion-list-convert-row {
+    font-size: 5vw;
+    line-height: 0.8!important;
+    margin-bottom: 5px;
+    background-color: orange;
+}
+
+.conversions-list-container .conversion-list-domain-row {
+    color: darkgoldenrod;
+    padding-left: 4px;
+}
+
+
+.conversions-list-container .nav-link {
+    color: black;
+    font-weight: bold;
+}
+
+.conversion-list-button-row button {
+    width: 99%;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    font-size: 4vw;
+    font-weight: bold;    
+    border-color: black;
+}
+
+.navbar {
+    padding: .5rem 5px !important;
+    background-color: darkgoldenrod;
+}
+
+.header-row h4 {
+    font-size: 4vw !important;
+    font-weight: bolder;
+}
+
+.header-row a {
+    color: black;    
+}
+
+.header-row img {
+    width: 5vw;
+    margin-right: 10px;    
 }
